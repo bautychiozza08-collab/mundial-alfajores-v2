@@ -1,0 +1,341 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --gold:#ffd166;
+  --gold2:#ffb703;
+  --dark:rgba(10,10,10,.72);
+  --border:rgba(255,209,102,.38);
+  --white:#fff7e8;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  color:var(--white);
+  padding:28px;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.77),rgba(0,0,0,.58),rgba(0,0,0,.88)),
+    url("fondo.jpg");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+
+header{text-align:center;margin-bottom:24px}
+header::before{content:"♛";display:block;color:var(--gold);font-size:32px;filter:drop-shadow(0 0 10px var(--gold))}
+header h1{
+  font-size:clamp(40px,7vw,82px);
+  text-transform:uppercase;
+  color:white;
+  text-shadow:0 3px 0 #111,0 0 25px rgba(255,209,102,.5);
+}
+header p{
+  color:#fff3d1;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-top:14px;
+  text-shadow:0 2px 8px black;
+}
+
+main{max-width:1400px;margin:0 auto}
+.top-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:24px 0 12px}
+button{border:none;border-radius:16px;padding:13px 18px;font-weight:900;cursor:pointer;transition:.2s}
+.top-actions button,#saveAlfajor{
+  color:#221300;
+  background:linear-gradient(135deg,#ffe08a,#ffb703,#d99000);
+  box-shadow:0 0 18px rgba(255,183,3,.35), inset 0 1px 0 rgba(255,255,255,.5);
+}
+button:hover{transform:translateY(-2px) scale(1.02)}
+.status{
+  width:max-content;
+  max-width:100%;
+  margin:0 auto 24px;
+  padding:9px 18px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:rgba(0,0,0,.48);
+  color:#fff0c2;
+  font-weight:800;
+  backdrop-filter:blur(10px);
+}
+
+.layout{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start}
+.groups-container{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;width:100%}
+
+.group,.info-panel,.bracket-wrapper,.modal-card{
+  background:linear-gradient(180deg,rgba(18,18,18,.82),rgba(6,6,6,.64));
+  border:1px solid var(--border);
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 15px 35px rgba(0,0,0,.4), inset 0 0 22px rgba(255,209,102,.04);
+}
+
+.group{padding:14px}
+.group h2{color:var(--gold);text-align:center;text-transform:uppercase;font-size:16px;margin-bottom:12px}
+.group h2::before{content:"🏆 "}
+.table-header,.team-row{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:center;margin-bottom:8px}
+.table-header{color:#ffe9a8;font-weight:900;font-size:12px;text-transform:uppercase}
+.position{
+  display:flex;justify-content:center;align-items:center;height:76px;
+  border-radius:14px;background:rgba(255,255,255,.08);color:var(--gold);font-weight:1000;font-size:18px;
+}
+
+.alfajor-card{
+  display:grid;
+  grid-template-columns:64px 1fr;
+  gap:10px;
+  align-items:center;
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:16px;
+  padding:8px;
+}
+
+.alfajor-img{
+  width:64px;height:64px;object-fit:contain;background:white;border-radius:14px;padding:4px;cursor:pointer;
+}
+.alfajor-img.empty{background:rgba(255,255,255,.08);border:1px dashed rgba(255,255,255,.28)}
+.alfajor-fields{display:flex;flex-direction:column;gap:6px}
+input,textarea{
+  width:100%;
+  border:none;
+  outline:none;
+  border-radius:10px;
+  padding:9px 10px;
+  font-weight:900;
+  color:white;
+  background:rgba(0,0,0,.38);
+  border:1px solid rgba(255,255,255,.10);
+}
+textarea{min-height:85px;resize:vertical}
+input::placeholder{color:rgba(255,255,255,.55)}
+.row-actions{display:flex;gap:6px}
+.row-actions button{
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(255,209,102,.16);
+  color:#ffe9a8;
+  border:1px solid rgba(255,209,102,.28);
+  font-size:12px;
+}
+.hidden-file{display:none}
+
+.info-panel{padding:18px;line-height:1.45}
+.info-panel h2{color:var(--gold);margin-bottom:12px}
+.info-panel p{margin:10px 0;color:#fff3d1}
+
+.bracket-wrapper{
+  margin-top:28px;
+  overflow-x:auto;
+  padding:24px;
+  background:rgba(0,0,0,.42);
+}
+.bracket-title{
+  text-align:center;color:white;font-size:30px;margin-bottom:24px;text-transform:uppercase;letter-spacing:1px;
+  text-shadow:0 0 16px rgba(255,209,102,.55);
+}
+.bracket-title::before,.bracket-title::after{content:" ★ ";color:var(--gold)}
+.bracket{
+  min-width:1000px;
+  display:grid;
+  grid-template-columns:1.1fr .85fr .95fr .85fr 1.1fr;
+  gap:26px;
+  align-items:center;
+  padding:16px;
+}
+.round{display:flex;flex-direction:column;gap:22px;min-width:160px}
+.round h3{text-align:center;color:var(--gold);margin-bottom:6px;text-transform:uppercase;font-size:13px}
+.match{display:flex;flex-direction:column;gap:8px;padding:8px;border-left:2px solid rgba(255,255,255,.55)}
+.team-slot,.champion{
+  min-height:58px;width:100%;color:white;background:linear-gradient(180deg,rgba(20,20,20,.86),rgba(0,0,0,.62));
+  border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.slot-img{width:42px;height:42px;object-fit:contain;background:white;border-radius:9px;padding:3px}
+.selected{background:linear-gradient(135deg,#ffd166,#f4a261)!important;color:#251400!important}
+.sf{margin-top:92px}
+.center-area{text-align:center;padding:14px;border-radius:24px}
+.cup{font-size:82px;filter:drop-shadow(0 0 22px gold);animation:pulse 1.8s infinite ease-in-out}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.center-area h2{color:var(--gold);margin:10px 0;font-size:25px;text-shadow:0 0 18px rgba(255,209,102,.65)}
+.champion{
+  background:linear-gradient(135deg,#ffd166,#ffb703,#fb8500);
+  color:#261300;font-size:17px;margin-bottom:20px;border:1px solid rgba(255,255,255,.55);
+}
+.final-match{display:flex;flex-direction:column;gap:8px;border-top:2px solid var(--gold);padding-top:12px}
+
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;justify-content:center;align-items:center;z-index:10;padding:20px;
+}
+.modal.hidden{display:none}
+.modal-card{width:100%;max-width:460px;padding:22px;position:relative}
+.close{position:absolute;right:14px;top:14px;border-radius:50%;width:34px;height:34px;padding:0;background:#ff4d4d;color:white}
+.modal-img{width:150px;height:150px;object-fit:contain;background:white;border-radius:22px;padding:8px;display:block;margin:0 auto 12px}
+.modal-card h2{text-align:center;color:var(--gold);margin-bottom:12px}
+.modal-card label{display:block;margin:10px 0 5px;color:#ffe9a8;font-weight:900}
+
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.groups-container{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){
+  body{padding:14px;background-attachment:scroll}
+  header h1{font-size:38px}
+  .groups-container{grid-template-columns:1fr}
+  .bracket-wrapper{padding:12px}
+}
+
+
+/* ============================= */
+/* V2.1 TARJETAS DE ALFAJORES */
+/* ============================= */
+
+.table-header{
+  display:none;
+}
+
+.team-row{
+  grid-template-columns:52px 1fr;
+  align-items:stretch;
+}
+
+.position{
+  height:auto;
+  min-height:190px;
+  border-radius:18px;
+  font-size:20px;
+}
+
+.alfajor-card{
+  grid-template-columns:135px 1fr;
+  min-height:190px;
+  gap:14px;
+  padding:12px;
+  border-radius:20px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.48));
+  border:1px solid rgba(255,209,102,.28);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.32),
+    inset 0 0 18px rgba(255,209,102,.05);
+}
+
+.photo-label{
+  display:block;
+  height:100%;
+}
+
+.alfajor-img{
+  width:135px;
+  height:165px;
+  object-fit:contain;
+  border-radius:18px;
+  padding:8px;
+  box-shadow:0 0 22px rgba(255,255,255,.12);
+}
+
+.alfajor-img.empty{
+  width:135px;
+  height:165px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.alfajor-img.empty::after{
+  content:"📷\\A Subir foto";
+  white-space:pre;
+  text-align:center;
+  color:#ffe9a8;
+  font-weight:900;
+  line-height:1.35;
+}
+
+.alfajor-fields{
+  justify-content:space-between;
+  gap:8px;
+}
+
+.name-input{
+  height:38px;
+  font-size:17px;
+  color:#fff;
+  background:rgba(0,0,0,.48);
+}
+
+.card-mini-info{
+  display:grid;
+  gap:7px;
+}
+
+.card-mini-line{
+  background:rgba(0,0,0,.32);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:8px 10px;
+  font-weight:900;
+  font-size:13px;
+  color:#fff5d6;
+}
+
+.card-opinion{
+  min-height:45px;
+  line-height:1.25;
+  color:#ffffff;
+}
+
+.row-actions{
+  display:grid;
+  grid-template-columns:1fr 42px 42px;
+  gap:7px;
+}
+
+.row-actions button{
+  height:36px;
+  font-size:12px;
+}
+
+.bracket .team-slot,
+.bracket .champion{
+  min-height:72px;
+}
+
+.slot-img{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+}
+
+@media(max-width:900px){
+  .alfajor-card{
+    grid-template-columns:110px 1fr;
+  }
+
+  .alfajor-img,
+  .alfajor-img.empty{
+    width:110px;
+    height:145px;
+  }
+
+  .position{
+    min-height:170px;
+  }
+}
+
+@media(max-width:520px){
+  .team-row{
+    grid-template-columns:42px 1fr;
+  }
+
+  .alfajor-card{
+    grid-template-columns:1fr;
+  }
+
+  .alfajor-img,
+  .alfajor-img.empty{
+    width:100%;
+    height:170px;
+  }
+
+  .position{
+    min-height:260px;
+  }
+}

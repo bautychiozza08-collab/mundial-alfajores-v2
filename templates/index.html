@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mundial de Alfajores 2.0 🏆</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🏆 Mundial de Alfajores</h1>
+    <p>Versión 2.0 · Fotos · reseñas · fixture desde cuartos · base de datos</p>
+  </header>
+
+  <main>
+    <section class="top-actions">
+      <button id="generateBracket">🏆 Generar cuartos</button>
+      <button id="saveFixture">💾 Guardar fixture</button>
+      <button id="resetAll">🗑️ Reiniciar torneo</button>
+    </section>
+
+    <p class="status" id="status">Cargando mundial...</p>
+
+    <section class="layout">
+      <section class="groups-container" id="groupsContainer"></section>
+
+      <aside class="info-panel">
+        <h2>📌 Cómo usar</h2>
+        <p>Ordená los alfajores por puesto. Tocá la foto para subir una imagen. Tocá “Editar” para guardar puntaje, precio, lugar y opinión.</p>
+        <p><b>Pasan:</b> 1° y 2° de cada grupo.</p>
+        <p><b>Tip:</b> después de comer uno nuevo, agregalo en cualquier grupo y subí su foto.</p>
+      </aside>
+    </section>
+
+    <section class="bracket-wrapper">
+      <h2 class="bracket-title">Fixture Final</h2>
+
+      <div class="bracket quarters-only">
+        <div class="round">
+          <h3>Cuartos</h3>
+          <div class="match"><button class="team-slot" id="qf-1-a">-</button><button class="team-slot" id="qf-1-b">-</button></div>
+          <div class="match"><button class="team-slot" id="qf-2-a">-</button><button class="team-slot" id="qf-2-b">-</button></div>
+        </div>
+
+        <div class="round semis">
+          <h3>Semis</h3>
+          <div class="match sf"><button class="team-slot" id="sf-1-a">Finalista</button><button class="team-slot" id="sf-1-b">Finalista</button></div>
+        </div>
+
+        <div class="center-area">
+          <div class="cup">🏆</div>
+          <h2>CAMPEÓN</h2>
+          <button class="champion" id="champion">Alfajor campeón</button>
+          <div class="final-match">
+            <button class="team-slot" id="final-a">Finalista</button>
+            <button class="team-slot" id="final-b">Finalista</button>
+          </div>
+        </div>
+
+        <div class="round semis">
+          <h3>Semis</h3>
+          <div class="match sf"><button class="team-slot" id="sf-2-a">Finalista</button><button class="team-slot" id="sf-2-b">Finalista</button></div>
+        </div>
+
+        <div class="round">
+          <h3>Cuartos</h3>
+          <div class="match"><button class="team-slot" id="qf-3-a">-</button><button class="team-slot" id="qf-3-b">-</button></div>
+          <div class="match"><button class="team-slot" id="qf-4-a">-</button><button class="team-slot" id="qf-4-b">-</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="modal">
+    <div class="modal-card">
+      <button class="close" id="closeModal">×</button>
+      <img id="modalImg" class="modal-img" alt="">
+      <h2 id="modalTitle"></h2>
+
+      <label>Nombre</label>
+      <input id="editName">
+
+      <label>Puntaje</label>
+      <input id="editScore" type="number" step="0.1" min="0" max="10">
+
+      <label>Precio</label>
+      <input id="editPrice" placeholder="$">
+
+      <label>Lugar donde lo compraron</label>
+      <input id="editPlace">
+
+      <label>Fecha</label>
+      <input id="editDate" type="date">
+
+      <label>Opinión</label>
+      <textarea id="editOpinion"></textarea>
+
+      <button id="saveAlfajor">Guardar alfajor ✅</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
